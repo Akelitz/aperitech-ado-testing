@@ -1,0 +1,55 @@
+﻿@model MoviesIndexViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>@ViewBag.Title</h2>
+        <p id="Years">
+            @if (Model.IsYear)
+            {
+                <span>
+                    <a asp-action="Index" asp-route-year="">All</a>
+                </span>
+            }
+            @foreach (int year in Model.Years)
+            {
+                <span>
+                    | <a asp-action="Index" asp-route-year="@year">@year</a>
+                </span>
+            }
+        </p>
+        <p>
+            <span><a asp-action="Add">Add New</a></span>
+        </p>
+        <table id="Movies" class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Year</th>
+                    <th>Rating</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (MovieViewModel movie in Model.Movies)
+                {
+                    <tr id="Movie@(movie.Id)">
+                        <td>@movie.Title</td>
+                        <td>@movie.Year</td>
+                        <td>
+                            @for (var star = 0; star < movie.Stars; star++)
+                            {
+                                <i class="fas fa-star"></i>
+                            }
+                        </td>
+
+                        <td>
+                            <a asp-action="Details" asp-route-id="@movie.Id">Details</a> |
+                            <a asp-action="Edit" asp-route-id="@movie.Id">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@movie.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

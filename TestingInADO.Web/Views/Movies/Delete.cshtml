@@ -1,0 +1,26 @@
+﻿@model MovieViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>@ViewBag.Title</h2>
+        <h3>Are you sure you want to delete this movie?</h3>
+        <hr />
+        <div>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Title)</dt>
+                <dd id="movie-title">@Html.DisplayFor(model => model.Title)</dd>
+                <dt>@Html.DisplayNameFor(model => model.Year)</dt>
+                <dd>@Html.DisplayFor(model => model.Year)</dd>
+            </dl>
+        </div>
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <input type="submit" value="Confirm" class="btn btn-danger" />
+            </div>
+        </form>
+        <p>
+            <a asp-action="Index">Back to List</a>
+        </p>
+    </div>
+</div>
